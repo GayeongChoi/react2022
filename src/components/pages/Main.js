@@ -64,7 +64,7 @@ class Main extends React.Component {
                 delay: 2.0,
                 ease: "elastic.out(1, 0.3)"
             });
-        }, 5000)
+        }, 10)
     }
     
     getSite = () => {

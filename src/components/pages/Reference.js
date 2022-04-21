@@ -5,24 +5,9 @@ import Footer from "../layout/Footer";
 import Title from "../layout/Title";
 import ContContact from "../layout/ContContact";
 import Loading from "../basics/Loading";
-import { gsap } from "gsap";
 import ReferCont from "../includes/ReferCont";
+import { gsap } from "gsap";
 import axios from "axios";
-
-// function Reference(){
-//     return(
-//         <>
-//         <Header color="light"/>
-//         <Contents>
-//             <Title color="light" title={["Reference","Book"]} />
-//             <ReferCont color="light"/>
-//             <ContContact/>
-//         </Contents>
-//         <Footer />
-//     </>
-//     )
-// }
-// export default Reference;
 
 class Reference extends React.Component {
     state = {
@@ -54,53 +39,72 @@ class Reference extends React.Component {
                 delay: 1.3,
                 ease: "power4.out"
             });
-            gsap.to(".refer__inner", {
-                duration: 0.7,
-                y: 0,
-                opacity: 1,
-                delay: 1.5,
-                ease: "power4.out"
-            });
+            // gsap.to(".refer__inner", {
+            //     duration: 0.5,
+            //     y: 0,
+            //     opacity: 1,
+            //     delay: 1.6,
+            //     ease: "power3.out"
+            // });
         }, 10)
     }
-    getSite = async () => {
+    getRefers = async () => {
         const {
-            data : {
-                data: {htmlRefer}
-            }
+            data: {
+                data: {htmlRefer},
+            },
         } = await axios.get("https://webstoryboy.github.io/react2022/src/assets/json/refer.json");
-
-        this.setState({refers:htmlRefer, isLoading:false})
-   
-        setTimeout(() => {
-            this.setState({isLoading: false});
-            this.mainAnimation();
-        }, 1600)
+        this.setState({ refers: htmlRefer,  isLoading: false,})
+        this.mainAnimation();
     }
-
     componentDidMount(){
         setTimeout(() => {
             document.getElementById("loading").classList.remove("loading__active");
-            document.querySelector("body").style.background = "#F0EEEB";
-            this.getSite();
+            this.getRefers();
         }, 2000);
     }
     render(){
         const {isLoading, refers} = this.state;
-        console.log(refers);
+        console.log(refers)
         return (
             <>
                 {isLoading ? (
-                    <Loading color="light" />
+                    <Loading color="black" />
                 ) : (
                     <>
-                        <Header color="light" />
+                        <Header />
                         <Contents>
-                            <Title title={["Reference","book"]} color="light" />
-                            <ReferCont refer={refers} color="light" />
-                            <ContContact/>
+                            <Title title={["Portfolio","Site"]} />
+                            <section className="refer__cont">
+                                <div className="container">
+                                    <div className="refer__inner">
+                                        <h2>CSS</h2>
+                                        <ul className="refer__list">
+                                            {refers.map((refer) => (
+                                                <ReferCont
+                                                    key={refer.id}
+                                                    id={refer.id}
+                                                    title={refer.title}
+                                                    desc={refer.desc}
+                                                    use={refer.use}
+                                                    desc2={refer.desc2}
+                                                    tag={refer.tag}
+                                                    image={refer.image}
+                                                    element={refer.element}
+                                                    link={refer.link}
+                                                    Definition={refer.Definition}
+                                                    Accessibility={refer.Accessibility}
+                                                    mdn={refer.mdn}
+                                                    w3c={refer.w3c}
+                                                />
+                                            ))}
+                                        </ul>
+                                    </div>
+                                </div>
+                            </section>
+                            <ContContact />
                         </Contents>
-                        <Footer color="light" />
+                        <Footer />
                     </>
                 )}
             </>
