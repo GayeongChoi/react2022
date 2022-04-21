@@ -1,0 +1,72 @@
+.script__cont {
+    font-family: "Chosunilbo";
+    padding-bottom: 30vh;
+}
+.script__inner {
+    opacity: 0;
+}
+.script {
+    color: var(--white);
+    margin-bottom: 30vh;
+
+    .desc {
+        padding:1rem 0;
+
+        h3 {
+            font-size: 3vh;
+            padding:1rem 0;
+        }
+    
+        .text {
+            display: flex;
+            justify-content: space-between;
+    
+            .txt {
+                width: 33%;
+               
+                &:nth-child(2) {
+                    padding: 0 2rem;
+                }
+            }
+        }
+    }
+
+    .btn {
+        display: flex;
+        flex-wrap: wrap;
+
+        li {
+            padding: 0.8rem;
+
+            a {
+                padding: 1rem;
+                border: 1px solid var(--dark_border);
+                border-radius: 100%;
+
+                a:hover {
+                    color: var(--black);
+                    border: 1px double var(--light_border);
+                }
+            }
+        }
+    }
+}
+
+//라이트버전
+.light.script__cont {
+    background: var(--light_bg);
+
+    .script {
+        color: var(--black);
+    }
+
+    .btn {
+
+        li {
+
+            a {
+                border: 1px solid var(--light_border);
+            }
+        }
+    }
+}

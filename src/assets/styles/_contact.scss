@@ -1,0 +1,38 @@
+.contact__cont {
+    height: 100vh;
+    display: flex;
+    // align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    color: var(--white);
+    margin: 0 10vw;
+}
+.contact__inner {
+    opacity: 0;
+    .text {
+        padding-top: 5vh;
+        font-size: 8vw;
+        line-height: 0.85;
+        font-family: "saol";
+        color: #fff;
+        text-transform:uppercase;
+
+        div:nth-child(1) {
+            text-align: left;
+        }
+        div:nth-child(2) {
+            text-align: center;
+        }
+        div:nth-child(3) {
+            text-align: right;
+        }
+    }
+    .desc {
+        width: 20vw;
+        float: right;
+        font-weight: normal;
+        font-size: 1rem;
+        font-family: var(--kor_font);
+        padding-top: 5vw;
+    }
+}

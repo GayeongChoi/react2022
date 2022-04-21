@@ -1,0 +1,43 @@
+.main__cont{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background:var(--dark_bg);
+
+    .main__inner {
+        font-size: 10vw;
+        line-height: 0.85;
+        font-family: var(--main_font);
+        // text-align: left;
+        color: var(--white);
+        text-transform: uppercase;
+    }
+}
+
+// main Animation 
+.main__inner > div {
+    opacity: 0;
+    transform: translateY(100px);
+}
+
+//라이트 버전
+.light#main {
+    background-color: var(--light_bg);
+    border-color:var(--light_border);
+    color: var(--black);
+
+    h4 {
+        color: var(--black);
+    }
+    a {
+        color: var(--black);
+
+        &::before {
+            background: var(--black);
+        }
+    }
+    div {
+        border-right-color: var(--light_border)
+    }
+}
