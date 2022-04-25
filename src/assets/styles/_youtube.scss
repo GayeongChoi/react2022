@@ -50,6 +50,24 @@
     }
 }
 
+.youtube__list {
+    ul {
+        display: flex;
+        flex-wrap: wrap;
+        li {
+            flex: 1 1 23%;
+            margin: 1%;
+            p {
+                color: var(--white);
+                font-family: var(--subKor_font);
+                padding-top: 7px;
+            }
+        }
+    }
+}
+
+
+
 // 라이트버전
 .light.youtube_cont {
     background: var(--light_bg);
