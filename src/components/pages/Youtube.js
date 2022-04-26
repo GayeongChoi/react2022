@@ -1,40 +1,23 @@
-import React from "react";
+import React, { useEffect, useState } from 'react'
 import Header from "../layout/Header";
 import Contents from "../layout/Contents";
 import Footer from "../layout/Footer";
 import Title from "../layout/Title";
 import ContContact from "../layout/ContContact";
+import YoutubeList from "../includes/YoutubeList";
+import YoutubeSearch from "../includes/YoutubeSearch";
 import Loading from "../basics/Loading";
 import { gsap } from "gsap";
-import YoutubeCont from "../includes/YoutubeCont";
-// import YoutubeSearch from "../includes/YoutubeSearch";
-// import YoutubeList from "../includes/YoutubeList";
-import axios from "axios";
+// import axios from "axios";
 
-// function Youtube(){
-//     return(
-//         <>
-//             <Header color="light"/>
-//                 <Contents>
-//                     <Title  color="light" title={["CODING","YOUTUBER"]} />
-//                     <YoutubeCont  color="light"/>
-//                     <ContContact/>
-//                 </Contents>
-//             <Footer />
-//         </>
-//     )
-// }
-// export default Youtube;
+// require('dotenv').config() //npm i dotenv
 
-class Youtube extends React.Component {
-    state = {
-        isLoading : true,
-        lists: [],
-        searchs:[]
-    } 
-    
-    mainAnimation = () => {
+function Youtube() {
+    const [videos, setVideos] = useState([]);
+
+    const mainAnimation = () => {
         setTimeout(() => {
+            document.getElementById("loading").classList.remove("loading__active");
             gsap.to("#header", {
                 duration: 0.8,
                 top: 0,
@@ -59,50 +42,75 @@ class Youtube extends React.Component {
                 ease: "power4.out"
             });
             gsap.to(".youtube__inner", {
+                duration: 0.7,
+                y: 0,
+                opacity: 1,
+                delay: 1.5,
+                ease: "power4.out"
+            });
+            gsap.to(".youtube__search", {
                 duration: 0.5,
                 y: 0,
                 opacity: 1,
                 delay: 1.6,
                 ease: "power3.out"
             });
+            gsap.to(".youtube__list", {
+                duration: 0.5,
+                y: 0,
+                opacity: 1,
+                delay: 2.0,
+                ease: "power3.out"
+            });
         }, 10)
     }
 
-    getYoutubes = async() => {
-        const lists = await axios.get("https://youtube.googleapis.com/youtube/v3/search?part=snippet&q=bts&key=AIzaSyDDXEC06dKJzJj7sqkotQnYJzY4_mWxeFY&type=video&maxResults=30"); //데이터 가져오기
-        this.setState({lists,isLoading:false});//로딩소스에 false를 보내줌
-        console.log(lists); //데이터 가져오는 지 확인
-        this.mainAnimation(); //애니메이션 실행
+    const search = (query) => {
+        var requestOptions = {
+            method: 'GET',
+            redirect: 'follow',
+        }
+
+        fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=30&q=${query}}&type=video&key=${process.env.REACT_APP_API}`, requestOptions)
+            .then(response => response.json())
+            .then(result => setVideos(result.items))
+            .catch(error => console.log('error', error));
     }
 
-    componentDidMount(){ //
-        setTimeout(() => {
-            document.getElementById("loading").classList.remove("loading__active"); //로딩소스 제거
-            this.getYoutubes(); //유튜브 데이터 가져옴
-        }, 2000); //2초뒤 실행
-    }
+    useEffect(()=>{
+        var requestOptions = {
+            method: 'GET',
+            redirect: 'follow'
+          };
+          
+          fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=30&q=BTS&type=video&key=${process.env.REACT_APP_API}`, requestOptions)
+            .then(response => response.json())
+            .then(result => {
+                setVideos(result.items);
+                mainAnimation();
+            })
+            .catch(error => console.log('error', error));
+    }, []); 
 
-    render(){
-        const { isLoading, lists } = this.state; //로딩소스 가져오기
-        return (
-            <>
-            {isLoading ? (
-                <Loading color="light"/>
-            ) : (
-                <>
-                    <Header color="light"/>
-                    <Contents>
-                        <Title  color="light" title={["Youtube", "reference"]} />
-                        <YoutubeCont  color="light" lists={lists}/>
-                        {/* <YoutubeSearch />
-                        <YoutubeList lists={lists}/> */}
-                        <ContContact/>
-                    </Contents>
-                    <Footer />
-                </>
-            )}
-            </>
-        )
-    }
+  return (
+    <>
+        <Loading/>
+        <Header/>
+        <Contents>
+            <Title  title={["youtube","reference"]} />
+            <section className="youtube__cont">
+                <div className="container">
+                    <div className="youtube__inner">
+                        <YoutubeSearch onSearch={search} />
+                        <YoutubeList videos={videos}/>
+                    </div>
+                </div>
+            </section>
+            <ContContact/>
+        </Contents>
+        <Footer />
+    </>
+  )
 }
+
 export default Youtube;
