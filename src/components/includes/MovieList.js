@@ -1,16 +1,16 @@
-import React from 'react';
-import ScriptItem from "./ScriptItem";
+import React from "react";
+import MovieItem from "./MovieItem";
 
-function ScriptList(props) {
-  console.log(props)
+function MovieList(props) {
+  console.log(props);
   return (
-    <div className='script__list'>
+    <div className="movie__list">
       <ul>
-        {props.videos.map((video, index)=>(
-          <ScriptItem key={index} video={video} />
+        {props.videos.map((video, index) => (
+          <MovieItem key={index} video={video} />
         ))}
-       </ul>
+      </ul>
     </div>
-  )
+  );
 }
-export default ScriptList
+export default MovieList;
