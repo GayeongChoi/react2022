@@ -2,7 +2,7 @@ import React from "react";
 
 function MovieItem(props) {
   console.log(props);
-  // 가져오는 방법은 TMDB API에서 참고
+  //이미지 등의 가져오는 방법은 TMDB API에서 참고
   return (
     <li>
       <a href={`https://www.themoviedb.org/movie/${props.video.id}`}>

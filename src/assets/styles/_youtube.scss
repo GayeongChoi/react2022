@@ -3,51 +3,8 @@
 .youtube__inner {
   opacity: 0;
 }
-
 .youtube {
   padding-bottom: 30vh;
-}
-.top {
-  display: flex;
-  padding-bottom: 5rem;
-
-  .title {
-    width: 40%;
-    color: var(--white);
-    font-size: 50px;
-    font-family: "Chosunilbo";
-
-    em {
-      display: block;
-    }
-  }
-  .link {
-    width: 60%;
-    height: 40vh;
-    background: rgb(88, 86, 86);
-  }
-}
-.bottom {
-  display: flex;
-
-  .img {
-    width: 35%;
-  }
-
-  table {
-    width: 65%;
-    color: var(--white);
-
-    tr {
-      font-family: "Chosunilbo";
-      font-size: 20px;
-
-      th {
-        text-align: center;
-        font-weight: 300;
-      }
-    }
-  }
 }
 
 .youtube__list {
@@ -157,3 +114,47 @@
     }
   }
 }
+
+// 이전CSS
+// .top {
+//   display: flex;
+//   padding-bottom: 5rem;
+
+//   .title {
+//     width: 40%;
+//     color: var(--white);
+//     font-size: 50px;
+//     font-family: "Chosunilbo";
+
+//     em {
+//       display: block;
+//     }
+//   }
+//   .link {
+//     width: 60%;
+//     height: 40vh;
+//     background: rgb(88, 86, 86);
+//   }
+// }
+// .bottom {
+//   display: flex;
+
+//   .img {
+//     width: 35%;
+//   }
+
+//   table {
+//     width: 65%;
+//     color: var(--white);
+
+//     tr {
+//       font-family: "Chosunilbo";
+//       font-size: 20px;
+
+//       th {
+//         text-align: center;
+//         font-weight: 300;
+//       }
+//     }
+//   }
+// }

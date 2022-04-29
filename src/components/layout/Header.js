@@ -25,9 +25,6 @@ function Header(props) {
             <Link to="/movie">Movie</Link>
           </li>
           <li>
-            <Link to="/script">Script</Link>
-          </li>
-          <li>
             <Link to="/contact">Contact</Link>
           </li>
         </ul>
